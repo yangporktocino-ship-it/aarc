@@ -40,7 +40,12 @@
     content:"";position:absolute;inset:0;z-index:-1;
     background:linear-gradient(180deg,rgba(2,10,8,.4) 0%,rgba(2,10,8,.55) 25%,rgba(2,10,8,.6) 100%)
   }
-  nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:28px 0}
+  .site-header{
+    position:fixed; top:0; left:0; width:100%; z-index:1000;
+    background:transparent;
+  }
+  section[id]{scroll-margin-top:90px}
+  nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 0}
   .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:.04em}
   .brand .mark{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-size:26px;font-weight:900}
   .brand span.arc{color:var(--cyan)}
@@ -53,6 +58,29 @@
     text-decoration:none;display:flex;align-items:center;gap:8px;transition:.25s
   }
   .nav-cta:hover{background:rgba(45,255,176,.1);box-shadow:0 0 22px rgba(45,255,176,.25)}
+  .nav-right{display:flex;align-items:center;gap:16px}
+  .hamburger{
+    display:none; flex-direction:column; justify-content:center; gap:5px;
+    width:32px; height:32px; background:none; border:none; cursor:pointer; padding:0;
+  }
+  .hamburger span{display:block; width:100%; height:2px; background:var(--white); transition:.25s}
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu{
+    display:none; max-height:0; overflow:hidden;
+    background:rgba(2,10,8,.96); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    transition:max-height .3s ease;
+  }
+  .mobile-menu.open{max-height:320px}
+  .mobile-menu ul{list-style:none; padding:10px 0 20px}
+  .mobile-menu li{border-top:1px solid var(--border)}
+  .mobile-menu a{
+    display:block; padding:16px 4px; color:#e8f5ef; text-decoration:none;
+    font-size:14px; letter-spacing:.08em; text-transform:uppercase; opacity:.9
+  }
+  .mobile-menu a:hover{opacity:1; color:var(--cyan)}
   .hero-copy{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:90px}
   .hero-kicker{color:var(--cyan);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px}
   .hero-copy h1{font-size:52px;max-width:660px;line-height:1.15;margin-bottom:18px}
@@ -122,6 +150,7 @@
 
   @media(max-width:860px){
     .links{display:none}
+    .hamburger{display:flex}
     .hero-copy h1{font-size:36px}
     .grid-4,.grid-3,.grid-2{grid-template-columns:1fr}
     .split-2{grid-template-columns:1fr}
@@ -138,12 +167,18 @@
     .btn-primary,.btn-ghost{text-align:center;justify-content:center}
     .card{padding:22px}
     h2.section-title{font-size:28px}
+    nav{padding:16px 0}
+    .brand{font-size:17px}
+    .brand .mark{width:28px;height:28px;font-size:22px}
+    .nav-cta{padding:9px 16px;font-size:11px}
+    .nav-right{gap:10px}
+    section[id]{scroll-margin-top:74px}
   }
 </style>
 </head>
 <body>
 
-<section class="hero">
+<div class="site-header">
   <div class="container">
     <nav>
       <div class="brand"><span class="mark">▲</span><span class="arc">AAR</span></div>
@@ -154,9 +189,26 @@
         <li><a href="#ecosystem">Ecosystem</a></li>
         <li><a href="#community">Community</a></li>
       </ul>
-      <a href="#buy" class="nav-cta">Buy ▲AAR →</a>
+      <div class="nav-right">
+        <a href="#buy" class="nav-cta">Buy ▲AAR →</a>
+        <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <ul>
+        <li><a href="#about" onclick="closeMobileMenu()">About</a></li>
+        <li><a href="#tokenomics" onclick="closeMobileMenu()">Tokenomics</a></li>
+        <li><a href="#roadmap" onclick="closeMobileMenu()">Roadmap</a></li>
+        <li><a href="#ecosystem" onclick="closeMobileMenu()">Ecosystem</a></li>
+        <li><a href="#community" onclick="closeMobileMenu()">Community</a></li>
+      </ul>
+    </div>
   </div>
+</div>
+
+<section class="hero">
 
   <div class="container hero-copy">
     <div class="hero-kicker">The Next Move Starts Here</div>
@@ -491,5 +543,15 @@
   <div class="container">© 2026 ▲AAR. Community project. All rights reserved.</div>
 </footer>
 
+<script>
+  function toggleMobileMenu(){
+    document.getElementById('hamburgerBtn').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu(){
+    document.getElementById('hamburgerBtn').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+</script>
 </body>
 </html>
