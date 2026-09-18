@@ -177,7 +177,17 @@
       background-size:cover;
       opacity:.55;
     }
-    .site-header,
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:rgba(2,10,8,.88);
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid rgba(45,255,176,.12);
+    }
     .hero,
     section.about,section.tokenomics,section.rewards,section.burn,section.graduation,
     section.roadmap,section.ecosystem,section.transparency,section.security,section.community,section.faq,
