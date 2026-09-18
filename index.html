@@ -145,7 +145,13 @@
   .faq-item[open] summary:after{content:"−"}
   .faq-item p{padding:0 24px 20px;color:var(--muted);font-size:14px;line-height:1.7}
 
-  .social-row{display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap}
+  .social-row{display:flex;gap:16px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+  .social-icon{
+    width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--border);color:var(--white);transition:.25s
+  }
+  .social-icon svg{width:20px;height:20px;fill:currentColor}
+  .social-icon:hover{background:rgba(45,255,176,.1);box-shadow:0 0 22px rgba(45,255,176,.25);color:var(--cyan)}
   footer{padding:40px 0;text-align:center;color:var(--muted);font-size:12px;border-top:1px solid var(--border);position:relative;z-index:1;background:var(--bg)}
 
   @media(max-width:860px){
@@ -159,7 +165,11 @@
   @media(max-width:600px){
     .hero,section.about,section.tokenomics,section.rewards,section.burn,section.graduation,
     section.roadmap,section.ecosystem,section.transparency,section.security,section.community,section.faq{
-      background-attachment:scroll
+      background-attachment:scroll;
+      background-size:contain;
+      background-repeat:no-repeat;
+      background-position:center;
+      background-color:var(--bg)
     }
     .hero-copy{padding-bottom:60px}
     .hero-copy h1{font-size:30px}
@@ -538,10 +548,14 @@
 <footer>
   <div class="container">
     <div class="social-row">
-      <a href="https://x.com/AAR" target="_blank" rel="noopener" class="btn-primary">𝕏 Follow on X</a>
-      <a href="#" target="_blank" rel="noopener" class="btn-ghost">Join Telegram</a>
+      <a href="https://x.com/AAR" target="_blank" rel="noopener" class="social-icon" aria-label="Follow on X">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" target="_blank" rel="noopener" class="social-icon" aria-label="Join Telegram">
+        <svg viewBox="0 0 24 24"><path d="M9.036 15.803l-.372 5.226c.532 0 .762-.228 1.04-.5l2.496-2.388 5.174 3.79c.95.523 1.63.248 1.885-.876l3.417-16.02h.001c.302-1.406-.507-1.955-1.433-1.615L1.13 9.657c-1.363.53-1.344 1.29-.232 1.634l5.11 1.595L18.634 5.14c.564-.365 1.078-.163.655.202z"/></svg>
+      </a>
     </div>
-    <div style="margin-top:28px">© 2026 ▲AAR. Community project. All rights reserved.</div>
+    © 2026 ▲AAR. Community project. All rights reserved.
   </div>
 </footer>
 
